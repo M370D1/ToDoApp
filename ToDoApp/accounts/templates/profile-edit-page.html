@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="todo-container">
+        <div class="todo-header">
+            <h2>This is Edit Profile Page</h2>
+        </div>
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="todo-item">
+                {% for field in form %}
+                    <p>
+                        {{ field.label }}
+                        {{ field }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="todo-item">
+                {% if object.photo %}
+                    <img src="{{ object.photo }}" alt="Profile Photo">
+                {% else %}
+                    <img src="{% static 'images/person.png' %}" alt="No Profile Image">
+                {% endif %}
+            </div>
+            <div class="todo-item">
+                <p>
+                    <button type="submit">SAVE PROFILE</button>
+                </p>
+            </div>
+        </form>
+        <div class="todo-item">
+            <a href="{% url 'profile-delete' user.pk %}">
+                <button>DELETE PROFILE</button>
+            </a>
+            <a href="{% url 'home-page' %}">
+                <button>HOME PAGE</button>
+            </a>
+        </div>
+    </div>
+{% endblock %}

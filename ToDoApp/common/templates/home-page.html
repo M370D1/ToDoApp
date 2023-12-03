@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="todo-container">
+        <div class="todo-header">
+            <h2>This is Home Page</h2>
+        </div>
+        {% if user.is_authenticated %}
+            <div class="todo-item">
+                {% if user.photo %}
+                    <img src="{{ user.photo }}" alt="Profile Photo">
+                {% else %}
+                    <img src="{% static 'images/person.png' %}" alt="No Profile Image">
+                {% endif %}
+            </div>
+            <div class="todo-item">
+                <p>Welcome, {{ user.username }}</p>
+            </div>
+            <div class="todo-item">
+                <a href="{% url 'todo-add' %}">
+                    <button>TO DO</button>
+                </a>
+                <a href="{% url 'profile-details' user.pk %}">
+                    <button>PROFILE DETAILS</button>
+                </a>
+                <a href="{% url 'logout' %}">
+                    <button>LOGOUT</button>
+                </a>
+            </div>
+        {% else %}
+            <div class="todo-actions">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="todo-item">
+                    {{ form.as_p }}
+                </div>
+                <div class="todo-item">
+                    <button type="submit">LOGIN</button>
+                </div>
+            </form>
+                <a href="{% url 'register' %}">
+                    <button>REGISTER</button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

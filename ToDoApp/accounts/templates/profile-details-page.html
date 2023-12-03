@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="todo-container">
+        <div class="todo-header">
+            <h2>This is Profile Details Page</h2>
+        </div>
+        <div class="todo-actions">
+            {% if object.photo %}
+                <div class="todo-item">
+                    <img src="{{ object.photo }}" alt="Profile Photo">
+                </div>
+            {% else %}
+                <div class="todo-item">
+                    <img src="{% static 'images/person.png' %}" alt="No Profile Image">
+                </div>
+            {% endif %}
+            <div class="todo-item">
+                <p>User: {{ user.username }}</p>
+                <p>
+                    {% if user.get_user_name %}
+                        Name: {{ user.get_user_name }}
+                    {% endif %}
+                </p>
+                <p>Email: {{ user.email }}</p>
+            </div>
+            <div class="todo-item">
+                <a href="{% url 'profile-edit' user.pk %}">
+                    <button>EDIT PROFILE</button>
+                </a>
+                <a href="{% url 'home-page' %}">
+                    <button>HOME PAGE</button>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

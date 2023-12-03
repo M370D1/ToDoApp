@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="todo-container">
+        <div class="todo-header">
+            <h2>This is To Do Page</h2>
+        </div>
+        <ul class="todo-list">
+            {% for todo_item in user_todo_items %}
+                <ui class="todo-item">
+                    {{ todo_item.content }}
+                    <div>Created on: {{ todo_item.date_of_creation }}</div>
+                    <form method="post" action="{% url 'todo-delete' todo_item.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                </ui>
+            {% endfor %}
+        </ul>
+        <div class="todo-actions">
+            <form method="post" action="{% url 'todo-add' %}">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit">SUBMIT</button>
+            </form>
+            <a href="{% url 'home-page' %}"><button>HOME PAGE</button></a>
+        </div>
+    </div>
+{% endblock %}

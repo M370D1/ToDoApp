@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="todo-container">
+        <div class="todo-header">
+            <h2>Are you sure you want to delete your profile?</h2>
+        </div>
+        <div class="todo-actions">
+            <form method="post" action="{% url 'profile-delete' user.pk %}">
+                {% csrf_token %}
+                <div class="todo-item">
+                    <button type="submit">YES</button>
+                </div>
+            </form>
+            <a href="{% url 'profile-details' user.pk %}">
+                <div class="todo-item">
+                    <button>NO</button>
+                </div>
+            </a>
+        </div>
+    </div>
+{% endblock %}
