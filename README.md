@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to ToDoApp, a simple task management application built with Python and Django. This application leverages Docker for PostgreSQL, providing a hassle-free setup for database management.
+Welcome to ToDoApp, a simple task management application built with Python and Django. This application leverages Docker for PostgreSQL, providing a hassle-free setup for database management.  :)  A tease - one critical bug hidden in the app, can you find it ?  :)
 
 ## Features
 
